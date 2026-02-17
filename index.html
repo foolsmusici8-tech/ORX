@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORX TEMPE OREX - Squad ML</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #8B0000, #0a1f44);
+    color: white;
+    text-align: center;
+}
+
+header {
+    padding: 30px 20px;
+    background: #0a1f44;
+    border-bottom: 3px solid red;
+}
+
+.logo {
+    width: 250px;
+}
+
+h1 {
+    margin: 10px 0;
+}
+
+/* FORM */
+.form-box {
+    margin: 30px auto;
+}
+
+input {
+    padding: 10px;
+    width: 200px;
+    border-radius: 8px;
+    border: none;
+}
+
+select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: red;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: darkred;
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    color: #0a1f44;
+    width: 220px;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px red;
+    position: relative;
+}
+
+.card img {
+    width: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.role {
+    color: red;
+    font-weight: bold;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 15px;
+    background: #0a1f44;
+    border-top: 3px solid red;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="logo-orx.png" class="logo">
+    <h1>🔥 ORX TEMPE OREX 🔥</h1>
+    <p>Squad Mobile Legends</p>
+</header>
+
+<div class="form-box">
+    <input type="text" id="nama" placeholder="Masukkan Nama Member">
+    
+    <select id="role">
+        <option>Tank</option>
+        <option>Jungler</option>
+        <option>Mid Lane</option>
+        <option>Gold Lane</option>
+        <option>Roamer</option>
+    </select>
+
+    <button onclick="tambahMember()">Tambah</button>
+    <p id="counter">0 / 20 Member</p>
+</div>
+
+<div class="container" id="memberContainer"></div>
+
+<footer>
+© 2026 ORX TEMPE OREX
+</footer>
+
+<script>
+let jumlahMember = 0;
+const maxMember = 20;
+
+function tambahMember() {
+    const nama = document.getElementById("nama").value;
+    const role = document.getElementById("role").value;
+    const container = document.getElementById("memberContainer");
+
+    if (nama === "") {
+        alert("Masukkan nama dulu!");
+        return;
+    }
+
+    if (jumlahMember >= maxMember) {
+        alert("Member sudah mencapai 20!");
+        return;
+    }
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+        <span class="delete-btn" onclick="hapusMember(this)">×</span>
+        <img src="https://via.placeholder.com/80">
+        <h3>${nama}</h3>
+        <p class="role">${role}</p>
+    `;
+
+    container.appendChild(card);
+
+    jumlahMember++;
+    document.getElementById("counter").innerText = jumlahMember + " / 20 Member";
+    document.getElementById("nama").value = "";
+}
+
+function hapusMember(element) {
+    element.parentElement.remove();
+    jumlahMember--;
+    document.getElementById("counter").innerText = jumlahMember + " / 20 Member";
+}
+</script>
+
+</body>
+</html>
+logo-orx.png
